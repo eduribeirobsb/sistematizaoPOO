@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 //Atributos
-
 public class Funcionario {
     protected String nome;
     protected String cpf;

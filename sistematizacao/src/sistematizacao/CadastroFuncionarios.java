@@ -83,8 +83,8 @@ public class CadastroFuncionarios {
         System.out.println("2 - Estagiário");
         System.out.print("Escolha uma opção: ");
         int opcaoTipo = scanner.nextInt();
-        scanner.nextLine(); // Limpar o buffer do scanner
-
+        scanner.nextLine(); 
+        
         switch (opcaoTipo) {
             case 1:
                 FuncionarioCLT funcionarioCLT = new FuncionarioCLT(nome, cpf, cargo, cargaHoraria, email, doenca, contatoEmergenciaNome, contatoEmergenciaTelefone, tipoSanguineo);
@@ -166,7 +166,7 @@ public class CadastroFuncionarios {
                     System.out.println("Opção inválida. Tente novamente.");
             }
 
-        } while (opcao != 0);
+        } while (opcao != 0); // Caso a opção seja diferente de 0
 
         scanner.close();
     }
