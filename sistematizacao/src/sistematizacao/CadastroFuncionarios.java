@@ -36,37 +36,48 @@ public class CadastroFuncionarios {
         System.out.println("Digite o email do funcionário:");
         String email = scanner.nextLine();
 
-        System.out.println("Informe a condição de saúde do funcionário:");
-        System.out.println("1 - Problema cardíaco");
-        System.out.println("2 - Alergia");
-        System.out.println("3 - Diabetes");
-        System.out.println("4 - Nenhuma");
-        System.out.println("5 - Outros (Especificar)");
-        System.out.print("Escolha uma opção: ");
-        int opcaoDoenca = scanner.nextInt();
-        scanner.nextLine();
+        // Funcionário pode ter mais de um problema - Array
+        List<String> problemasSaude = new ArrayList<>();
+        while (true) {
+            System.out.println("Informe a condição de saúde do funcionário (digite 'fim' para terminar):");
+            System.out.println("1 - Problema cardíaco");
+            System.out.println("2 - Alergia");
+            System.out.println("3 - Diabetes");
+            System.out.println("4 - Nenhuma");
+            System.out.println("5 - Outros (Especificar)");
+            System.out.print("Escolha uma opção: ");
+            int opcaoDoenca = scanner.nextInt();
+            scanner.nextLine();
 
-        String doenca;
-        switch (opcaoDoenca) {
-            case 1:
-                doenca = "Problema cardíaco";
+            String doenca;
+            switch (opcaoDoenca) {
+                case 1:
+                    doenca = "Problema cardíaco";
+                    break;
+                case 2:
+                    doenca = "Alergia";
+                    break;
+                case 3:
+                    doenca = "Diabetes";
+                    break;
+                case 4:
+                    doenca = "Nenhuma";
+                    break;
+                case 5:
+                    System.out.println("Especifique a condição de saúde:");
+                    doenca = scanner.nextLine();
+                    break;
+                default:
+                    System.out.println("Opção inválida.");
+                    continue;
+            }
+
+            problemasSaude.add(doenca);
+            System.out.println("Deseja adicionar mais condições de saúde? (sim/não)");
+            String resposta = scanner.nextLine();
+            if (resposta.equalsIgnoreCase("não") || resposta.equalsIgnoreCase("nao")) {
                 break;
-            case 2:
-                doenca = "Alergia";
-                break;
-            case 3:
-                doenca = "Diabetes";
-                break;
-            case 4:
-                doenca = "Nenhuma";
-                break;
-            case 5:
-                System.out.println("Especifique a condição de saúde:");
-                doenca = scanner.nextLine();
-                break;
-            default:
-                System.out.println("Opção inválida. Funcionário não cadastrado.");
-                return;
+            }
         }
 
         System.out.println("Digite o nome do contato para emergências:");
@@ -84,14 +95,14 @@ public class CadastroFuncionarios {
         System.out.print("Escolha uma opção: ");
         int opcaoTipo = scanner.nextInt();
         scanner.nextLine(); 
-        
+
         switch (opcaoTipo) {
             case 1:
-                FuncionarioCLT funcionarioCLT = new FuncionarioCLT(nome, cpf, cargo, cargaHoraria, email, doenca, contatoEmergenciaNome, contatoEmergenciaTelefone, tipoSanguineo);
+                FuncionarioCLT funcionarioCLT = new FuncionarioCLT(nome, cpf, cargo, cargaHoraria, email, problemasSaude, contatoEmergenciaNome, contatoEmergenciaTelefone, tipoSanguineo);
                 funcionarios.add(funcionarioCLT);
                 break;
             case 2:
-                FuncionarioEstagiario estagiario = new FuncionarioEstagiario(nome, cpf, cargo, cargaHoraria, email, doenca, contatoEmergenciaNome, contatoEmergenciaTelefone, tipoSanguineo);
+                FuncionarioEstagiario estagiario = new FuncionarioEstagiario(nome, cpf, cargo, cargaHoraria, email, problemasSaude, contatoEmergenciaNome, contatoEmergenciaTelefone, tipoSanguineo);
                 funcionarios.add(estagiario);
                 break;
             default:
@@ -99,7 +110,7 @@ public class CadastroFuncionarios {
         }
     }
 
-    // Método para verificar se o CPF já está cadastrado
+    // Função para verificar o CPF
     private boolean cpfJaCadastrado(String cpf) {
         for (Funcionario funcionario : funcionarios) {
             if (funcionario.getCpf().equals(cpf)) {
@@ -118,7 +129,7 @@ public class CadastroFuncionarios {
                 return funcionario;
             }
         }
-        return null; 
+        return null;
     }
 
     public void imprimirTodosFuncionarios() {
@@ -166,7 +177,7 @@ public class CadastroFuncionarios {
                     System.out.println("Opção inválida. Tente novamente.");
             }
 
-        } while (opcao != 0); // Caso a opção seja diferente de 0
+        } while (opcao != 0);
 
         scanner.close();
     }

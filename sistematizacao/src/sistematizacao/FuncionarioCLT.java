@@ -1,22 +1,24 @@
 package sistematizacao;
 
-public class FuncionarioCLT extends Funcionario {
+import java.util.List;
 
-    public FuncionarioCLT(String nome, String cpf, String cargo, int cargaHoraria, String email, String doenca, String contatoEmergenciaNome, String contatoEmergenciaTelefone, String tipoSanguineo) {
-        super(nome, cpf, cargo, cargaHoraria, email, doenca, contatoEmergenciaNome, contatoEmergenciaTelefone, tipoSanguineo);
+public class FuncionarioCLT extends Funcionario {
+    public FuncionarioCLT(String nome, String cpf, String cargo, int cargaHoraria, String email, List<String> problemasSaude, String contatoEmergenciaNome, String contatoEmergenciaTelefone, String tipoSanguineo) {
+        super(nome, cpf, cargo, cargaHoraria, email, problemasSaude, contatoEmergenciaNome, contatoEmergenciaTelefone, tipoSanguineo);
     }
 
     @Override
     public String toString() {
-        return "Funcionário CLT{" +
+        return "FuncionarioCLT{" +
                 "nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 ", cargo='" + cargo + '\'' +
-                ", carga horária=" + cargaHoraria +
-                ", email=" + email + '\'' +
-                ", doença='" + doenca + '\'' +
-                ", contato de emergência='" + contatoEmergenciaNome + " (" + contatoEmergenciaTelefone + ")" + '\'' +
-                ", tipo sanguíneo='" + tipoSanguineo + '\'' +
+                ", cargaHoraria=" + cargaHoraria +
+                ", email='" + email + '\'' +
+                ", problemasSaude=" + problemasSaude +
+                ", contatoEmergenciaNome='" + contatoEmergenciaNome + '\'' +
+                ", contatoEmergenciaTelefone='" + contatoEmergenciaTelefone + '\'' +
+                ", tipoSanguineo='" + tipoSanguineo + '\'' +
                 '}';
     }
 }
